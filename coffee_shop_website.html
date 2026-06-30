@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Craft Coffee - ร้านกาแฟสุดพิเศษสำหรับคุณ</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        coffee: {
+                            50: '#fdfbf7',
+                            100: '#f6eedf',
+                            200: '#e6d0b3',
+                            600: '#9c6644',
+                            700: '#7f5539',
+                            800: '#5c3d2e',
+                            900: '#46120a',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Anuphan', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f6eedf;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9c6644;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7f5539;
+        }
+    </style>
+</head>
+<body class="bg-coffee-50 text-coffee-900 font-sans min-h-screen flex flex-col">
+
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-coffee-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <span class="text-3xl text-coffee-700"><i class="fa-solid fa-mug-hot"></i></span>
+                        <span class="font-serif text-2xl font-bold tracking-wider text-coffee-800">AROMA CRAFT</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-coffee-800 hover:text-coffee-600 font-medium transition duration-150">หน้าแรก</a>
+                    <a href="#about" class="text-coffee-800 hover:text-coffee-600 font-medium transition duration-150">เกี่ยวกับเรา</a>
+                    <a href="#menu" class="text-coffee-800 hover:text-coffee-600 font-medium transition duration-150">เมนูของเรา</a>
+                    <a href="#contact" class="text-coffee-800 hover:text-coffee-600 font-medium transition duration-150">ติดต่อเรา</a>
+                </nav>
+
+                <!-- Action Button & Cart -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Button -->
+                    <button onclick="toggleCart()" class="relative p-2 text-coffee-800 hover:text-coffee-600 focus:outline-none transition">
+                        <i class="fa-solid fa-shopping-basket text-2xl"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center opacity-0 transition-opacity">0</span>
+                    </button>
+                    
+                    <a href="#menu" class="hidden sm:inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-full text-sm font-medium text-white bg-coffee-700 hover:bg-coffee-800 shadow-sm transition">
+                        สั่งกาแฟตอนนี้
+                    </a>
+
+                    <!-- Mobile menu button -->
+                    <button type="button" onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-md text-coffee-800 hover:text-coffee-600 focus:outline-none">
+                        <i id="menu-icon" class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-coffee-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-coffee-800 hover:bg-coffee-100">หน้าแรก</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-coffee-800 hover:bg-coffee-100">เกี่ยวกับเรา</a>
+                <a href="#menu" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-coffee-800 hover:bg-coffee-100">เมนูของเรา</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md text-base font-medium text-coffee-800 hover:bg-coffee-100">ติดต่อเรา</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-coffee-100 overflow-hidden py-20 lg:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
+                    <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-coffee-200 text-coffee-800 mb-4">
+                            Premium Arabica Beans 100%
+                        </span>
+                        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-coffee-800 leading-tight">
+                            เริ่มต้นวันใหม่ด้วย <br class="hidden sm:block">
+                            <span class="text-coffee-600">กาแฟหอมละมุน</span> ที่ใส่ใจทุกขั้นตอน
+                        </h1>
+                        <p class="mt-4 text-lg text-coffee-700">
+                            คัดสรรเมล็ดกาแฟสายพันธุ์ดีจากแหล่งปลูกที่ยั่งยืน คั่วบดอย่างพิถีพิถันเพื่อส่งมอบความสุขและรสชาติอันเป็นเอกลักษณ์ในทุกๆ แก้วของคุณ
+                        </p>
+                        <div class="mt-8 sm:flex sm:justify-center lg:justify-start gap-4">
+                            <a href="#menu" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-coffee-700 hover:bg-coffee-800 md:py-4 md:text-lg md:px-10 shadow-lg transition duration-200">
+                                ดูเมนูทั้งหมด
+                            </a>
+                            <a href="#about" class="mt-3 sm:mt-0 flex items-center justify-center px-8 py-3 border border-coffee-600 text-base font-medium rounded-full text-coffee-700 bg-transparent hover:bg-coffee-200/50 md:py-4 md:text-lg md:px-10 transition duration-200">
+                                เรียนรู้เพิ่มเติม
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Hero Image / SVG Graphic -->
+                    <div class="mt-12 lg:mt-0 lg:col-span-6 flex justify-center">
+                        <div class="relative w-full max-w-md lg:max-w-none">
+                            <!-- Visual Graphic using Tailwind CSS patterns and SVG instead of fragile URLs -->
+                            <div class="relative bg-gradient-to-tr from-coffee-200 to-coffee-100 rounded-full p-8 shadow-inner overflow-hidden aspect-square flex items-center justify-center">
+                                <svg class="w-4/5 h-4/5 text-coffee-700 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path>
+                                </svg>
+                                <!-- Floating coffee cups design elements -->
+                                <div class="absolute top-10 left-10 text-4xl transform -rotate-12"><i class="fa-solid fa-mug-hot text-coffee-600"></i></div>
+                                <div class="absolute bottom-10 right-10 text-5xl transform rotate-12"><i class="fa-solid fa-seedling text-coffee-700"></i></div>
+                                <div class="absolute top-1/2 right-4 text-3xl"><i class="fa-solid fa-cookie text-coffee-600"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features / Benefits -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="flex flex-col items-center text-center p-6 bg-coffee-50 rounded-2xl border border-coffee-100 transition duration-300 hover:shadow-md">
+                        <div class="p-4 bg-coffee-200 text-coffee-800 rounded-full text-2xl mb-4">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-800 mb-2">คุณภาพจากธรรมชาติ</h3>
+                        <p class="text-coffee-700 text-sm">เราคัดสรรเมล็ดกาแฟออร์แกนิก 100% สดใหม่จากไร่ท้องถิ่นและไร่ที่มีชื่อเสียงระดับโลก</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="flex flex-col items-center text-center p-6 bg-coffee-50 rounded-2xl border border-coffee-100 transition duration-300 hover:shadow-md">
+                        <div class="p-4 bg-coffee-200 text-coffee-800 rounded-full text-2xl mb-4">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-800 mb-2">คั่วบดอย่างพิถีพิถัน</h3>
+                        <p class="text-coffee-700 text-sm">การันตีด้วยฝีมือบาริสต้ามืออาชีพและกระบวนการคั่วตามสูตรลับเฉพาะ เพื่อให้ได้กลิ่นและรสชาติที่ดีที่สุด</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="flex flex-col items-center text-center p-6 bg-coffee-50 rounded-2xl border border-coffee-100 transition duration-300 hover:shadow-md">
+                        <div class="p-4 bg-coffee-200 text-coffee-800 rounded-full text-2xl mb-4">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-coffee-800 mb-2">บรรยากาศที่อบอุ่น</h3>
+                        <p class="text-coffee-700 text-sm">ร้านของเราออกแบบมาเพื่อให้เหมาะกับการทำงาน พักผ่อน หรือพบปะพูดคุย พร้อมบริการ Wi-Fi ฟรี</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 bg-coffee-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                    <div class="mb-10 lg:mb-0">
+                        <!-- Custom SVG Illustration of a Coffee shop -->
+                        <div class="relative bg-white rounded-3xl p-8 shadow-lg border border-coffee-100">
+                            <svg class="w-full h-80 text-coffee-600" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="40" width="80" height="50" rx="4" fill="#9c6644" fill-opacity="0.2" />
+                                <rect x="15" y="45" width="25" height="30" rx="2" fill="#9c6644" fill-opacity="0.4" />
+                                <rect x="50" y="45" width="35" height="45" rx="2" fill="#7f5539" />
+                                <circle cx="67" cy="65" r="5" fill="#f6eedf" />
+                                <path d="M5 40H95L85 25H15L5 40Z" fill="#7f5539" />
+                                <path d="M30 15C30 15 32 5 38 10C44 15 48 5 48 5" stroke="#9c6644" stroke-width="2" stroke-linecap="round" />
+                                <path d="M40 17C40 17 42 7 48 12C54 17 58 7 58 7" stroke="#9c6644" stroke-width="2" stroke-linecap="round" />
+                                <path d="M22 60H33" stroke="#9c6644" stroke-width="3" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-coffee-800 mb-6">
+                            ใส่ใจในรายละเอียด ทุกหยดคือความใส่ใจ
+                        </h2>
+                        <p class="text-coffee-700 mb-6 text-lg leading-relaxed">
+                            Aroma Craft เริ่มต้นขึ้นจากความรักในกลิ่นอายของกาแฟยามเช้า เราออกเดินทางเพื่อค้นหาและทำงานร่วมกับเกษตรกรท้องถิ่นเพื่อคัดสรรเมล็ดกาแฟที่ดีที่สุด จนเกิดเป็นสูตรพิเศษที่ผสมผสานความลงตัวของความเข้มข้น ความหวานตามธรรมชาติ และกลิ่นดอกไม้อ่อนๆ
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-center space-x-3">
+                                <span class="text-green-600 text-xl"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="text-coffee-800 font-medium">คั่วสดใหม่ทุกสัปดาห์</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-green-600 text-xl"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="text-coffee-800 font-medium">ควบคุมอุณหภูมิและปริมาณน้ำด้วยเครื่องชงมาตรฐานระดับโลก</span>
+                            </li>
+                            <li class="flex items-center space-x-3">
+                                <span class="text-green-600 text-xl"><i class="fa-solid fa-circle-check"></i></span>
+                                <span class="text-coffee-800 font-medium">มีเมนูทางเลือกเพื่อสุขภาพ นมพืช และสารให้ความหวานทดแทน</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-coffee-800 mb-4">เมนูแนะนำของเรา</h2>
+                    <p class="text-coffee-600 text-lg">สัมผัสประสบการณ์รสชาติที่กลมกล่อม ทั้งแบบร้อน เย็น และขนมหวานที่พร้อมทานคู่กับกาแฟถ้วยโปรดของคุณ</p>
+                    
+                    <!-- Menu Category Tabs -->
+                    <div class="flex justify-center space-x-2 mt-8">
+                        <button onclick="filterMenu('all')" id="tab-all" class="tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-700 text-white shadow-sm transition">ทั้งหมด</button>
+                        <button onclick="filterMenu('coffee')" id="tab-coffee" class="tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-100 text-coffee-800 hover:bg-coffee-200 transition">กาแฟ</button>
+                        <button onclick="filterMenu('non-coffee')" id="tab-non-coffee" class="tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-100 text-coffee-800 hover:bg-coffee-200 transition">เครื่องดื่มอื่น ๆ</button>
+                        <button onclick="filterMenu('bakery')" id="tab-bakery" class="tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-100 text-coffee-800 hover:bg-coffee-200 transition">เบเกอรี่</button>
+                    </div>
+                </div>
+
+                <!-- Menu Grid -->
+                <div id="menu-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Menu Item 1 (Coffee) -->
+                    <div class="menu-item coffee bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Espresso (เอสเพรสโซ)</h3>
+                                <span class="text-coffee-700 font-bold">฿65</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">กาแฟช็อตเข้มข้น สกัดจากเมล็ดอาราบิก้าแท้ รสชาติหนักแน่น หอมกลิ่นช็อกโกแลตและนัทตี้</p>
+                            <button onclick="addToCart('Espresso', 65)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 2 (Coffee) -->
+                    <div class="menu-item coffee bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-whiskey-glass"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Iced Latte (ลาเต้เย็น)</h3>
+                                <span class="text-coffee-700 font-bold">฿80</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">เอสเพรสโซช็อตผสมนมสดสูตรพิเศษ นุ่มละมุน ดื่มง่าย กลมกล่อมลงตัว</p>
+                            <button onclick="addToCart('Iced Latte', 80)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 3 (Coffee) -->
+                    <div class="menu-item coffee bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-ice-cream"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Dirty Coffee (เดอร์ตี้)</h3>
+                                <span class="text-coffee-700 font-bold">฿95</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">นมสดแช่เย็นจัด เสิร์ฟแยกชั้นราดทับด้วยเอสเพรสโซช็อตรสเข้มข้น ดื่มด่ำแบบไม่ต้องคน</p>
+                            <button onclick="addToCart('Dirty Coffee', 95)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 4 (Non-Coffee) -->
+                    <div class="menu-item non-coffee bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Matcha Latte (ชาเขียวมัทฉะ)</h3>
+                                <span class="text-coffee-700 font-bold">฿90</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">ชาเขียวมัทฉะแท้เกรดพรีเมียมจากเมืองอูจิ ประเทศญี่ปุ่น ชงกับนมสดหอมมันละมุนลิ้น</p>
+                            <button onclick="addToCart('Matcha Latte', 90)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 5 (Non-Coffee) -->
+                    <div class="menu-item non-coffee bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-glass-water"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Iced Cocoa (โกโก้เย็น)</h3>
+                                <span class="text-coffee-700 font-bold">฿75</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">โกโก้รสชาติเข้มข้นสูตรพิเศษ ผสมผสานอย่างสมดุลระหว่างความขมหวานนุ่มนวล</p>
+                            <button onclick="addToCart('Iced Cocoa', 75)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 6 (Bakery) -->
+                    <div class="menu-item bakery bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-stroopwafel"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Croissant (ครัวซองต์เนยสด)</h3>
+                                <span class="text-coffee-700 font-bold">฿85</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">ครัวซองต์สไตล์ฝรั่งเศส อบสดใหม่ทุกเช้า แป้งกรอบนอกนุ่มใน หอมกลิ่นเนยสดแท้</p>
+                            <button onclick="addToCart('Croissant', 85)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 7 (Bakery) -->
+                    <div class="menu-item bakery bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-cake-slice"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Basque Cheesecake</h3>
+                                <span class="text-coffee-700 font-bold">฿120</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">ชีสเค้กหน้าไหม้สไตล์บาสก์ เนื้อเนียนครีมมี่ รสชีสเข้มข้น หวานกำลังดี</p>
+                            <button onclick="addToCart('Basque Cheesecake', 120)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Menu Item 8 (Bakery) -->
+                    <div class="menu-item bakery bg-coffee-50 rounded-2xl overflow-hidden border border-coffee-100 shadow-sm hover:shadow-md transition duration-300 flex flex-col h-full">
+                        <div class="h-48 bg-coffee-200 flex items-center justify-center text-6xl text-coffee-700">
+                            <i class="fa-solid fa-cookie"></i>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-lg font-bold text-coffee-800">Soft Cookie Choco</h3>
+                                <span class="text-coffee-700 font-bold">฿55</span>
+                            </div>
+                            <p class="text-coffee-600 text-sm mb-4 flex-grow">คุกกี้นิ่มช็อกโกแลตชิปชิ้นโต อัดแน่นด้วยช็อกโกแลตแท้พรีเมียมเยิ้มๆ ทุกคำ</p>
+                            <button onclick="addToCart('Soft Cookie Choco', 55)" class="w-full py-2 bg-coffee-700 hover:bg-coffee-800 text-white rounded-xl text-sm font-medium transition flex items-center justify-center space-x-2">
+                                <i class="fa-solid fa-cart-plus"></i> <span>เพิ่มลงตะกร้า</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-20 bg-coffee-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-serif text-3xl font-bold text-coffee-800 mb-4">เสียงตอบรับจากลูกค้า</h2>
+                    <p class="text-coffee-700">ความสุขของลูกค้าคือกำลังใจสูงสุดในการบริการและสร้างสรรค์สิ่งดี ๆ</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feedback 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-coffee-100">
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-coffee-700 mb-6 italic">"กาแฟลาเต้เย็นที่นี่รสชาตินุ่มละมุนมากค่ะ บรรยากาศเงียบสงบเหมาะกับการเอางานมาทำมาก พนักงานบริการน่ารักและยิ้มแย้มตลอดเวลา"</p>
+                        <div class="font-bold text-coffee-800">คุณอรพินทร์ ส.</div>
+                    </div>
+                    <!-- Feedback 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-coffee-100">
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-coffee-700 mb-6 italic">"สำหรับคอกาแฟสายลึกอย่างผม สั่ง Dirty แล้วชอบมากครับ นมเย็นจัดกับตัวช็อตเอสเพรสโซลงตัวมาก ครัวซองต์ก็ดีกรอบนอกฉ่ำเนย"</p>
+                        <div class="font-bold text-coffee-800">คุณกิตติทัต น.</div>
+                    </div>
+                    <!-- Feedback 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm border border-coffee-100">
+                        <div class="flex text-yellow-400 mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="text-coffee-700 mb-6 italic">"เป็นร้านกาแฟโปรดร้านใหม่เลยค่ะ นอกจากเครื่องดื่มอร่อยแล้วชีสเค้กยังฟินมาก คุ้มราคาและบริการรวดเร็วทันใจมากค่ะ"</p>
+                        <div class="font-bold text-coffee-800">คุณมนัสชนก ร.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Location Info -->
+        <section id="contact" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-16">
+                    <!-- Contact Form -->
+                    <div class="mb-12 lg:mb-0">
+                        <h2 class="font-serif text-3xl font-bold text-coffee-800 mb-4">ส่งข้อความหาเรา</h2>
+                        <p class="text-coffee-700 mb-8">มีข้อสงสัย แนะนำ หรือสนใจจัดเลี้ยงนอกสถานที่ สามารถติดต่อทีมงานได้ทันที</p>
+                        
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-coffee-800 mb-1">ชื่อ-นามสกุล</label>
+                                <input type="text" id="name" required class="w-full px-4 py-3 rounded-xl border border-coffee-200 focus:ring-2 focus:ring-coffee-600 focus:border-coffee-600 outline-none transition">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-coffee-800 mb-1">อีเมลติดต่อ</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3 rounded-xl border border-coffee-200 focus:ring-2 focus:ring-coffee-600 focus:border-coffee-600 outline-none transition">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-coffee-800 mb-1">ข้อความของคุณ</label>
+                                <textarea id="message" rows="4" required class="w-full px-4 py-3 rounded-xl border border-coffee-200 focus:ring-2 focus:ring-coffee-600 focus:border-coffee-600 outline-none transition"></textarea>
+                            </div>
+                            <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-coffee-700 hover:bg-coffee-800 text-white font-medium rounded-xl shadow transition duration-200">
+                                ส่งข้อความ
+                            </button>
+                        </form>
+                        <!-- Form Success Message Toast inside app (No standard alert) -->
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-50 text-green-800 rounded-xl border border-green-200 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>ส่งข้อมูลเรียบร้อยแล้ว! เราจะรีบติดต่อกลับโดยเร็วที่สุด</span>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details & Map representation -->
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h2 class="font-serif text-3xl font-bold text-coffee-800 mb-6">ข้อมูลติดต่อร้าน</h2>
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-coffee-100 text-coffee-700 rounded-xl text-lg">
+                                        <i class="fa-solid fa-map-location-dot"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-coffee-800">ที่ตั้งของเรา</h4>
+                                        <p class="text-coffee-700 text-sm">123 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-coffee-100 text-coffee-700 rounded-xl text-lg">
+                                        <i class="fa-solid fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-coffee-800">เวลาเปิดทำการ</h4>
+                                        <p class="text-coffee-700 text-sm">จันทร์ - ศุกร์: 07:00 น. - 18:00 น.</p>
+                                        <p class="text-coffee-700 text-sm">เสาร์ - อาทิตย์: 08:00 น. - 20:00 น.</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-coffee-100 text-coffee-700 rounded-xl text-lg">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-coffee-800">เบอร์โทรศัพท์ / อีเมล</h4>
+                                        <p class="text-coffee-700 text-sm">02-123-4567</p>
+                                        <p class="text-coffee-700 text-sm">hello@aromacraftcoffee.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mock Map using beautiful SVG styled elements -->
+                        <div class="mt-8 bg-coffee-100 h-64 rounded-2xl overflow-hidden relative border border-coffee-200 flex items-center justify-center text-center p-4">
+                            <!-- Artistic minimal map design using SVG -->
+                            <svg class="absolute inset-0 w-full h-full text-coffee-200" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="0" y1="50" x2="400" y2="50" stroke="currentColor" stroke-width="4" />
+                                <line x1="100" y1="0" x2="100" y2="300" stroke="currentColor" stroke-width="6" />
+                                <line x1="0" y1="200" x2="400" y2="150" stroke="currentColor" stroke-width="3" />
+                                <circle cx="100" cy="110" r="16" fill="#9c6644" opacity="0.4" />
+                            </svg>
+                            <div class="relative z-10">
+                                <span class="inline-block p-4 bg-white rounded-full shadow-lg text-coffee-700 text-3xl mb-2">
+                                    <i class="fa-solid fa-location-pin text-red-500 animate-bounce"></i>
+                                </span>
+                                <h4 class="font-bold text-coffee-800">Aroma Craft Coffee อยู่ที่นี่!</h4>
+                                <p class="text-xs text-coffee-600 mt-1">ใกล้สถานีรถไฟฟ้าบีทีเอส ทางออก 3 เดินเพียง 5 นาที</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Slide-out Shopping Cart drawer (In-memory interactive simulation) -->
+    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col border-l border-coffee-100">
+        <div class="p-6 border-b border-coffee-100 flex items-center justify-between">
+            <h3 class="font-serif text-xl font-bold text-coffee-800 flex items-center space-x-2">
+                <i class="fa-solid fa-shopping-basket"></i>
+                <span>ตะกร้าสินค้าของคุณ</span>
+            </h3>
+            <button onclick="toggleCart()" class="p-2 text-coffee-500 hover:text-coffee-800 transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- Cart Items Area -->
+        <div id="cart-items" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <!-- Dynamic content injected by JavaScript -->
+            <div id="empty-cart-message" class="text-center py-20 text-coffee-500">
+                <i class="fa-solid fa-mug-hot text-5xl mb-4 opacity-50"></i>
+                <p>ตะกร้าของคุณยังว่างเปล่า</p>
+                <p class="text-xs mt-1">ลองเลือกเมนูกาแฟหอมๆ สักแก้วสิครับ</p>
+            </div>
+        </div>
+
+        <!-- Cart Summary and Checkout Button -->
+        <div class="p-6 border-t border-coffee-100 bg-coffee-50">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-medium text-coffee-800">ราคารวมทั้งหมด:</span>
+                <span id="cart-total" class="text-2xl font-bold text-coffee-800">฿0</span>
+            </div>
+            <button onclick="checkoutOrder()" class="w-full py-3 bg-coffee-700 hover:bg-coffee-800 text-white font-bold rounded-xl shadow-md transition duration-200">
+                ยืนยันการสั่งซื้อจำลอง
+            </button>
+        </div>
+    </div>
+
+    <!-- Backdrop for Cart and Modal overlays -->
+    <div id="backdrop" onclick="closeAllOverlays()" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 hidden transition-opacity"></div>
+
+    <!-- Order Completion Modal -->
+    <div id="order-modal" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8 shadow-2xl border border-coffee-100 max-w-sm w-11/12 z-50 hidden">
+        <div class="text-center">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 text-green-600 text-3xl mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-xl font-bold text-coffee-800 mb-2">สั่งซื้อสำเร็จ! (จำลอง)</h3>
+            <p class="text-sm text-coffee-600 mb-6">บาริสต้ากำลังจัดเตรียมกาแฟแสนอร่อยให้คุณ ขอขอบคุณที่ใช้บริการกับเราค่ะ</p>
+            <button onclick="closeAllOverlays()" class="w-full py-3 bg-coffee-700 hover:bg-coffee-800 text-white font-medium rounded-xl transition">
+                กลับไปยังเมนูหลัก
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-coffee-800 text-coffee-100 py-12 border-t-4 border-coffee-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Branding column -->
+                <div class="md:col-span-2">
+                    <span class="font-serif text-2xl font-bold tracking-wider text-white flex items-center space-x-2 mb-4">
+                        <span class="text-coffee-200"><i class="fa-solid fa-mug-hot"></i></span>
+                        <span>AROMA CRAFT COFFEE</span>
+                    </span>
+                    <p class="text-coffee-200/80 max-w-sm text-sm">
+                        สวรรค์ของคนรักกาแฟที่คัดสรรคุณค่าจากธรรมชาติและดีไซน์รสชาติอันเปี่ยมสุนทรียภาพในทุกหยด
+                    </p>
+                </div>
+                
+                <!-- Links column -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">หน้าต่าง ๆ</h4>
+                    <ul class="space-y-2 text-sm text-coffee-200/80">
+                        <li><a href="#home" class="hover:text-white transition">หน้าแรก</a></li>
+                        <li><a href="#about" class="hover:text-white transition">เกี่ยวกับเรา</a></li>
+                        <li><a href="#menu" class="hover:text-white transition">เมนูเครื่องดื่ม</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">ติดต่อเรา</a></li>
+                    </ul>
+                </div>
+
+                <!-- Social links column -->
+                <div>
+                    <h4 class="text-white font-bold mb-4">ติดตามเรา</h4>
+                    <div class="flex space-x-4 mb-4 text-xl">
+                        <a href="#" class="hover:text-white text-coffee-200 transition"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white text-coffee-200 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white text-coffee-200 transition"><i class="fa-brands fa-line"></i></a>
+                        <a href="#" class="hover:text-white text-coffee-200 transition"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                    <p class="text-xs text-coffee-200/60">@aromacraftcoffee</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-coffee-700 pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-coffee-200/60">
+                <p>&copy; 2026 Aroma Craft Coffee. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-white transition">นโยบายความเป็นส่วนตัว</a>
+                    <span>&bull;</span>
+                    <a href="#" class="hover:text-white transition">ข้อตกลงการใช้งาน</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic via JavaScript -->
+    <script>
+        // State variables for Cart System
+        let cart = [];
+
+        // 1. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.className = "fa-solid fa-bars text-2xl";
+            } else {
+                icon.className = "fa-solid fa-xmark text-2xl";
+            }
+        }
+
+        // 2. Filter Menu Products
+        function filterMenu(category) {
+            // Update active state of buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.className = "tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-100 text-coffee-800 hover:bg-coffee-200 transition";
+            });
+            
+            const activeBtn = document.getElementById(`tab-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "tab-btn px-6 py-2 rounded-full text-sm font-medium bg-coffee-700 text-white shadow-sm transition";
+            }
+
+            // Show or Hide Menu Items
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Open and Close Cart
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const backdrop = document.getElementById('backdrop');
+            
+            if (drawer.classList.contains('translate-x-full')) {
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        function closeAllOverlays() {
+            document.getElementById('cart-drawer').classList.add('translate-x-full');
+            document.getElementById('backdrop').classList.add('hidden');
+            document.getElementById('order-modal').classList.add('hidden');
+        }
+
+        // 4. Cart Logic (Add, Remove, Update UI)
+        function addToCart(itemName, price) {
+            const existingItem = cart.find(item => item.name === itemName);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: itemName,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            updateCartUI();
+            
+            // Highlight Cart Button
+            const countBadge = document.getElementById('cart-count');
+            countBadge.classList.add('scale-125');
+            setTimeout(() => countBadge.classList.remove('scale-125'), 300);
+        }
+
+        function removeFromCart(itemName) {
+            cart = cart.filter(item => item.name !== itemName);
+            updateCartUI();
+        }
+
+        function updateCartQuantity(itemName, delta) {
+            const item = cart.find(item => item.name === itemName);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    removeFromCart(itemName);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById('cart-items');
+            const countBadge = document.getElementById('cart-count');
+            const totalDisplay = document.getElementById('cart-total');
+            
+            // Clean previous items
+            cartContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                    <div id="empty-cart-message" class="text-center py-20 text-coffee-500">
+                        <i class="fa-solid fa-mug-hot text-5xl mb-4 opacity-50"></i>
+                        <p>ตะกร้าของคุณยังว่างเปล่า</p>
+                        <p class="text-xs mt-1">ลองเลือกเมนูกาแฟหอมๆ สักแก้วสิครับ</p>
+                    </div>
+                `;
+                countBadge.classList.add('opacity-0');
+                totalDisplay.innerText = `฿0`;
+                return;
+            }
+            
+            // Show badge with count
+            const totalQty = cart.reduce((acc, item) => acc + item.quantity, 0);
+            countBadge.classList.remove('opacity-0');
+            countBadge.innerText = totalQty;
+
+            // Render items
+            let grandTotal = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                grandTotal += itemTotal;
+                
+                const element = document.createElement('div');
+                element.className = "flex items-center justify-between p-3 bg-coffee-50 rounded-xl border border-coffee-100";
+                element.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-coffee-800 text-sm">${item.name}</h4>
+                        <span class="text-xs text-coffee-600">฿${item.price} / แก้ว</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <button onclick="updateCartQuantity('${item.name}', -1)" class="w-6 h-6 flex items-center justify-center bg-white border border-coffee-200 text-coffee-800 rounded-full text-xs hover:bg-coffee-100">-</button>
+                        <span class="text-sm font-bold w-6 text-center">${item.quantity}</span>
+                        <button onclick="updateCartQuantity('${item.name}', 1)" class="w-6 h-6 flex items-center justify-center bg-white border border-coffee-200 text-coffee-800 rounded-full text-xs hover:bg-coffee-100">+</button>
+                        <button onclick="removeFromCart('${item.name}')" class="text-red-500 hover:text-red-700 ml-2"><i class="fa-solid fa-trash-can"></i></button>
+                    </div>
+                `;
+                cartContainer.appendChild(element);
+            });
+
+            totalDisplay.innerText = `฿${grandTotal}`;
+        }
+
+        // 5. Checkout function
+        function checkoutOrder() {
+            if (cart.length === 0) {
+                // Inline UI feedback (No alerts)
+                const cartContainer = document.getElementById('cart-items');
+                cartContainer.innerHTML = `
+                    <div class="p-4 bg-yellow-50 text-yellow-800 border border-yellow-200 rounded-xl text-center text-sm">
+                        กรุณาเลือกสินค้าใส่ตะกร้าก่อนกดยืนยันการสั่งซื้อครับ
+                    </div>
+                `;
+                setTimeout(() => updateCartUI(), 2500);
+                return;
+            }
+
+            // Close the cart, clear items, and open the confirmation modal
+            document.getElementById('cart-drawer').classList.add('translate-x-full');
+            cart = [];
+            updateCartUI();
+            
+            // Show Success Modal
+            document.getElementById('order-modal').classList.remove('hidden');
+            document.getElementById('backdrop').classList.remove('hidden');
+        }
+
+        // 6. Handle Contact Form Submit (Simulated)
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            // Show custom success box
+            const successBox = document.getElementById('form-success');
+            successBox.classList.remove('hidden');
+            
+            // Reset fields
+            document.getElementById('contactForm').reset();
+            
+            // Automatically hide success notification after 5 seconds
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
